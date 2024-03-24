@@ -1,0 +1,206 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* html {
+  font-size: 100%;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  /* overflow-x: hidden; */
+  /* overflow-y: none; */
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #4eac6d !important;
+  box-shadow: 0 0 0 0.1rem #4eac6d !important;
+}
+
+.light-theme {
+  --bg-primary: #4eac6d;
+  --error-fontColor: red;
+  --submit-btn: rgba(78, 172, 109, 0.9);
+  --mutedText-fontColor: #495057bf;
+  --authRightSide-bgColor: #fff;
+  --authRightSide-labelColor: #000;
+
+
+}
+
+.dark-theme {
+  --bg-primary: #4eac6d;
+  --error-fontColor: red;
+  --submit-btn: blue;
+  --mutedText-fontColor: #fff;
+  --authRightSide-bgColor: #000;
+  --authRightSide-labelColor: #fff;
+}
+
+#authentication {
+  background-color: var(--bg-primary);
+  padding: 30px 40px;
+  min-height: 100vh;
+}
+
+#authentication .inputFieldError {
+  color: red;
+  font-size: 13px;
+  font-weight: 600;
+
+}
+
+#authentication .inputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -10px;
+}
+
+#authentication label {
+  user-select: none;
+  color: var(--authRightSide-labelColor);
+}
+
+#authentication .inputContainer input {
+  padding-left: 40px;
+}
+
+#authentication .inputContainer .icon {
+  position: absolute;
+  left: 10px;
+}
+
+#authentication .inputContainer .icon svg {
+  font-size: 20px;
+  color: #000;
+}
+
+#authentication .submitBtn {
+  background-color: var(--submit-btn);
+  color: #fff;
+  font-size: 15px;
+  padding: 5px 50px;
+  border: none;
+  width: 100%;
+  line-height: 30px;
+}
+
+#authentication .textMuted {
+  color: var(--mutedText-fontColor);
+  font-size: 17px;
+  font-weight: normal;
+  user-select: none;
+}
+
+#authentication .textMuted a {
+  color: var(--mutedText-fontColor);
+}
+
+
+#authentication .leftSide {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  font-size: 15px;
+  font-weight: normal;
+  position: relative;
+}
+
+#authentication .leftSide img {
+  width: 420px;
+  height: 420px;
+  position: absolute;
+  top: 20%;
+  z-index: 1;
+
+}
+
+
+#authentication .rightSide {
+  background-color: var(--authRightSide-bgColor);
+  /* margin: 24px; */
+  padding: 40px 100px;
+  border-radius: 16px;
+}
+
+#authentication .rightSide h3 {
+  color: var(--authRightSide-labelColor);
+}
+
+#authentication .rightSide .formContent {
+  margin-top: 35px;
+}
+
+
+
+/* 
+---------------------------- RESPONSIVE BREAKPOINTS 
+*/
+
+/* xl */
+@media only screen and (max-width: 1200px) {
+
+  #authentication .rightSide {
+    padding: 40px 150px;
+  }
+
+  #authentication .leftSide img {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+/* lg */
+@media only screen and (max-width: 992px) {
+
+  #authentication .leftSide {
+    height: 100px;
+  }
+
+  #authentication .rightSide {
+    padding: 40px 50px;
+  }
+
+  #authentication .leftSide img {
+    width: 250px;
+    height: 250px;
+    top: -30%;
+    right: 0;
+
+  }
+
+
+}
+
+/* md */
+@media only screen and (max-width: 768px) {
+
+  #authentication .leftSide img {
+    width: 200px;
+    height: 200px;
+
+  }
+
+}
+
+/* sm */
+@media only screen and (max-width: 576px) {
+
+  #authentication {
+    padding: 30px 25px;
+  }
+
+  #authentication .rightSide {
+    padding: 40px 20px;
+  }
+}
