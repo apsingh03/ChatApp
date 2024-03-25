@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
+import { useNavigate } from "react-router-dom";
+
 import * as Yup from "yup";
+import { toast } from "react-toastify";
+import DevelopedBy from "../Components/DevelopedBy";
+import DarkLightToggleBtn from "../Components/DarkLightMode/DarkLightToggleBtn";
+import { useSelector, useDispatch } from "react-redux";
+import { createUserAsync, getAllUsersAsync } from "../redux/slices/UsersSlice";
+import IsLoading from "../Components/IsLoading";
+
 // icons
 import { FaUser, FaMobile } from "react-icons/fa";
 import { MdEmail, MdPassword } from "react-icons/md";
 import { BsChatTextFill } from "react-icons/bs";
-import DevelopedBy from "../Components/DevelopedBy";
-import DarkLightToggleBtn from "../Components/DarkLightMode/DarkLightToggleBtn";
 
 const SignUpPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const usersRedux = useSelector((state) => state.users);
+  // console.log( " usersRedux - " , usersRedux );
+
+  useEffect(() => {
+    // dispatch( getAllUsersAsync() );
+  }, []);
+
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
       .min(5, "Too Short!")
@@ -47,7 +63,7 @@ const SignUpPage = () => {
         </div>
 
         <div className="rightSide col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
-          <h3 className="text-center">Register Account</h3>
+          <h3 className="text-center">Register Account </h3>
 
           <div className="formContent">
             <Formik
@@ -58,7 +74,31 @@ const SignUpPage = () => {
                 mobileNo: "",
               }}
               validationSchema={SignupSchema}
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={async (values, { setSubmitting }) => {
+                const actionResult = await dispatch(
+                  createUserAsync({
+                    email: values.emailAddress,
+                    username: values.username,
+                    password: values.password,
+                    mobile: values.mobileNo,
+                  })
+                );
+
+                if (actionResult.payload.msg === "Email Already Exist") {
+                  toast.error(actionResult.payload.msg);
+                  values.emailAddress = "";
+                }
+
+                if (actionResult.payload.msg === "Username Already Exist") {
+                  toast.error(actionResult.payload.msg);
+                  values.username = "";
+                }
+
+                if (actionResult.payload.msg === "Sign Up Successful") {
+                  toast.success(actionResult.payload.msg);
+                  navigate("/signin");
+                }
+
                 setSubmitting(false);
               }}
             >
@@ -181,7 +221,7 @@ const SignUpPage = () => {
                         className="form-control"
                         id="mobileNo"
                         name="mobileNo"
-                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                        // pattern="[0-9]{10}-[0-9]{2}-[0-9]{3}"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.mobileNo}
@@ -205,6 +245,10 @@ const SignUpPage = () => {
               <Link to="/signin" className="px-3">
                 Login{" "}
               </Link>
+
+              <IsLoading
+                isLoading={usersRedux?.isLoading && usersRedux?.isLoading}
+              />
             </div>
 
             <DevelopedBy color="#000" />

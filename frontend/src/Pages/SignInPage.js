@@ -1,15 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
+import IsLoading from "../Components/IsLoading";
+import { useSelector, useDispatch } from "react-redux";
+
 // icons
 import { FaUser, FaMobile } from "react-icons/fa";
 import { MdEmail, MdPassword } from "react-icons/md";
 import { BsChatTextFill } from "react-icons/bs";
 import DevelopedBy from "../Components/DevelopedBy";
 import DarkLightToggleBtn from "../Components/DarkLightMode/DarkLightToggleBtn";
+import { loginUserAsync } from "../redux/slices/UsersSlice";
 
 const SignInPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const usersRedux = useSelector((state) => state.users);
+
   const SignupSchema = Yup.object().shape({
     password: Yup.string()
       .min(2, "Too Short!")
@@ -56,7 +65,41 @@ const SignInPage = () => {
                 password: "",
               }}
               validationSchema={SignupSchema}
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={async (values, { setSubmitting }) => {
+                const actionResult = await dispatch(
+                  loginUserAsync({
+                    email: values.emailAddress,
+                    password: values.password,
+                  })
+                );
+
+                if (actionResult.payload.msg === "Password Wrong") {
+                  toast.error(actionResult.payload.msg);
+                }
+
+                if (actionResult.payload.msg === "User Doesn't Exist") {
+                  toast.error(actionResult.payload.msg);
+                }
+
+                if (actionResult.payload.msg === "Logged In Successfull") {
+                  toast.success(actionResult.payload.msg);
+                  const { id, username, email, createdAt } =
+                    actionResult.payload.userObject;
+                  const userObject = {
+                    isUserLogged: true,
+                    id,
+                    username,
+                    email,
+                    createdAt,
+                  };
+                  localStorage.setItem(
+                    "loggedData",
+                    JSON.stringify(userObject)
+                  );
+                  window.location.replace("/");
+                  // console.log(actionResult);
+                }
+
                 setSubmitting(false);
               }}
             >
@@ -153,6 +196,10 @@ const SignInPage = () => {
               <Link to="/signup" className="px-3">
                 SignUp{" "}
               </Link>
+
+              <IsLoading
+                isLoading={usersRedux?.isLoading && usersRedux?.isLoading}
+              />
             </div>
 
             <DevelopedBy color="#000" />

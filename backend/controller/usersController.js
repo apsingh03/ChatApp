@@ -13,7 +13,7 @@ const getAllUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    console.log("Req.body - ", req.body);
+    // console.log("Req.body - ", req.body);
     const emailExistQuery = await Users.findOne({
       where: { email: req.body.email },
     });

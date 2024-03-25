@@ -26,7 +26,7 @@ const DarkLightToggleBtn = () => {
             height="50"
             color="black"
             fill="currentColor"
-            class="bi bi-moon-stars-fill"
+            className="bi bi-moon-stars-fill"
             viewBox="0 0 16 16"
             id="IconChangeColor"
             transform="scale(1,1)"
@@ -50,7 +50,7 @@ const DarkLightToggleBtn = () => {
             height="50"
             color="#fff"
             fill="currentColor"
-            class="bi bi-sun-fill"
+            className="bi bi-sun-fill"
             viewBox="0 0 16 16"
             id="IconChangeColor"
           >

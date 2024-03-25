@@ -1,9 +1,14 @@
-import React from 'react'
-
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const HomePage = () => {
-  return (
-    <div>HomePage</div>
-  )
-}
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const usersRedux = useSelector((state) => state.users);
 
-export default HomePage
+  console.log("usersRedux - ", usersRedux);
+
+  return <div>HomePage</div>;
+};
+
+export default HomePage;
