@@ -468,7 +468,7 @@ body {
 
 #rightSide .receiveChatLeftSide .senderInfo {
   margin-top: 5px;
-  width: 60%;
+  /* width: 60%; */
   float: left;
   display: flex;
   flex-direction: row-reverse;
@@ -512,7 +512,7 @@ body {
 
 #rightSide .sendChatRightSide .senderInfo {
   margin-top: 5px;
-  width: 60%;
+  /* width: 60%; */
   float: right;
   display: flex;
   flex-direction: row;

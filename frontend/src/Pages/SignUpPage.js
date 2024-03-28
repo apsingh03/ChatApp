@@ -248,6 +248,7 @@ const SignUpPage = () => {
 
               <IsLoading
                 isLoading={usersRedux?.isLoading && usersRedux?.isLoading}
+                color="#fff"
               />
             </div>
 

@@ -29,9 +29,18 @@ db.sequelize = sequelize;
 
 // table name
 db.users = require("./UsersModel.js")(sequelize, DataTypes);
+db.chat = require("./ChatModel.js")(sequelize, DataTypes);
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("------------ Congratulation You are in Sync -------------- ");
+});
+
+db.users.hasMany(db.chat, {
+  foreignKey: "user_id",
+});
+
+db.chat.belongsTo(db.users, {
+  foreignKey: "user_id",
 });
 
 module.exports = db;

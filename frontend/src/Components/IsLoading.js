@@ -1,13 +1,13 @@
 import React from "react";
 import ReactLoading from "react-loading";
 
-const IsLoading = ({ isLoading, color }) => {
+const IsLoading = (props) => {
   return (
     <>
-      {isLoading === true ? (
+      {props.isLoading === true ? (
         <ReactLoading
           type="spinningBubbles"
-          color="#fff"
+          color={props.color}
           height={25}
           width={25}
         />

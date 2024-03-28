@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 
 // Tables
 const Users = db.users;
+const Chat = db.chat;
 
 const getAllUsers = async (req, res) => {
   const query = await Users.findAll({
@@ -84,8 +85,62 @@ const loginUser = async (req, res) => {
   }
 };
 
+const createChatMessage = async (req, res) => {
+  try {
+    const user = req.user;
+
+    const query = await user.createChat({
+      message: req.body.message,
+      createdAt: new Date(),
+    });
+
+    const { id, email, username, mobile } = req.user;
+
+    const result = {
+      id: query.id,
+      message: query.message,
+      user_id: query.user_id,
+      createdAt: query.createdAt,
+      user: {
+        id,
+        email,
+        username,
+        mobile,
+      },
+    };
+
+    return res.status(200).send(result);
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
+};
+
+const getChatsMessage = async (req, res) => {
+  try {
+    const chatQuery = await Chat.findAll({
+      include: [
+        {
+          model: Users,
+          required: true,
+          attributes: {
+            exclude: ["password", "createdAt", "updatedAt"],
+          },
+        },
+      ],
+
+      order: [["id", "ASC"]],
+    });
+
+    return res.status(200).send(chatQuery);
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllUsers,
   createUser,
   loginUser,
+  createChatMessage,
+  getChatsMessage,
 };
