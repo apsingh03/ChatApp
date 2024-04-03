@@ -16,5 +16,81 @@ router.get(
   userAuthentication.authenticate,
   usersController.getChatsMessage
 );
+router.get(
+  "/getwithWhomConversations",
+  userAuthentication.authenticate,
+  usersController.getwithWhomConversations
+);
+router.get(
+  "/getChatsLength",
+  userAuthentication.authenticate,
+  usersController.getChatsLength
+);
+
+router.get(
+  "/getUserJoinedGroups",
+  userAuthentication.authenticate,
+  usersController.getUserJoinedGroups
+);
+
+router.get(
+  "/getGroupByIdChatsLength/:groupId",
+  userAuthentication.authenticate,
+  usersController.getGroupByIdChatsLength
+);
+
+router.get(
+  "/getGroupById/:groupId",
+  userAuthentication.authenticate,
+  usersController.getGroupById
+);
+
+router.post(
+  "/createGroupChat",
+  userAuthentication.authenticate,
+  usersController.createGroupChatMessage
+);
+
+router.post(
+  "/createGroup",
+  userAuthentication.authenticate,
+  usersController.createGroup
+);
+
+router.get(
+  "/allGroup",
+  userAuthentication.authenticate,
+  usersController.allGroup
+);
+
+router.post(
+  "/joinGroupViaInvitationLink",
+  userAuthentication.authenticate,
+  usersController.joinGroupViaInvitationLink
+);
+
+router.get(
+  "/getAboutGroupById",
+  userAuthentication.authenticate,
+  usersController.getAboutGroupById
+);
+
+router.get(
+  "/getAllGroupsJoinedUser",
+  userAuthentication.authenticate,
+  usersController.getAllGroupsJoinedUser
+);
+
+router.post(
+  "/joinGroupVia/",
+  userAuthentication.authenticate,
+  usersController.joinGroupViaUserId
+);
+
+router.delete(
+  "/removeFromGroupVia/:userId",
+  userAuthentication.authenticate,
+  usersController.removeFromGroupViaUserId
+);
 
 module.exports = router;

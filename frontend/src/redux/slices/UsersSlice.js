@@ -10,7 +10,7 @@ export const getAllUsersAsync = createAsyncThunk(
       const response = await axios.get(`${HOSTNAME}/users/getAllUsers/`);
       return response.data;
     } catch (error) {
-      console.log("getAllUsersAsync Error - ", error);
+      console.log("getAllUsersAsync Error - ", error.response);
     }
   }
 );
@@ -28,7 +28,7 @@ export const createUserAsync = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.log("createUserAsync Error - ", error);
+      console.log("createUserAsync Error - ", error.response);
     }
   }
 );
@@ -45,7 +45,7 @@ export const loginUserAsync = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.log("loginUserAsync Error  ", error);
+      console.log("loginUserAsync Error  ", error.response);
     }
   }
 );

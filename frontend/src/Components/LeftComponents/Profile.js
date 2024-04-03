@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { FaRegUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
-import {useSelector , useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigation = useNavigate();
+  const usersRedux = useSelector((state) => state.users);
 
-  const usersRedux = useSelector( (state) => state.users );
+  // console.log();
 
-  console.log(usersRedux)
+  const redirectIfNotLogged = () => {
+    if (usersRedux?.loggedUserData?.isUserLogged === null) {
+      navigation("/signin");
+    }
+  };
+
+  useEffect(() => {
+    redirectIfNotLogged();
+  }, []);
 
   return (
-    <div className="userProfile">
+    <div className="userProfile" style={{}}>
       <div className="header">
         <div className=" d-flex flex-row justify-content-between p-3 text-white font-weight-bold">
           <div>
@@ -30,8 +41,29 @@ const Profile = () => {
         </div>
 
         <div>
-          <p className="name"> { usersRedux?.loggedUserData?.id } { usersRedux?.loggedUserData?.username }</p>
+          <p className="name">
+            {" "}
+            {usersRedux?.loggedUserData?.id}{" "}
+            {usersRedux?.loggedUserData?.username}
+          </p>
+          <p>
+            {" "}
+            <small> {usersRedux?.loggedUserData?.email} </small>{" "}
+          </p>
           <p className="position">Full Stack Developer</p>
+          <p className="text-center">
+            {" "}
+            <button
+              onClick={() => [
+                localStorage.removeItem("loggedData"),
+                navigation("/signin"),
+              ]}
+              type="button"
+              className="btn btn-sm btn-warning"
+            >
+              Logout
+            </button>{" "}
+          </p>
         </div>
       </div>
 
@@ -50,7 +82,7 @@ const Profile = () => {
             {" "}
             <MdEmail />{" "}
           </div>
-          <p className="px-3"> { usersRedux?.loggedUserData?.email }</p>
+          <p className="px-3"> {usersRedux?.loggedUserData?.email}</p>
         </div>
 
         <div className="d-flex flex-row ">
@@ -58,7 +90,7 @@ const Profile = () => {
             {" "}
             <FaRegUser />{" "}
           </div>
-          <p className="px-3"> { usersRedux?.loggedUserData?.username } </p>
+          <p className="px-3"> {usersRedux?.loggedUserData?.username} </p>
         </div>
 
         <div className="d-flex flex-row ">

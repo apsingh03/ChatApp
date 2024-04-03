@@ -1,13 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
-  const Chat = sequelize.define(
-    "Chat",
+  const Group = sequelize.define(
+    "group",
     {
-      message: {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      inviteLink: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      idsCode: {
-        type: DataTypes.STRING,
+      totalUsers: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       createdAt: {
@@ -24,17 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Chat.associate = (models) => {
-    Chat.belongsTo(models.users, {
-      foreignKey: "user_id",
-      as: "user",
-    });
-
-    Chat.belongsTo(models.users, {
-      foreignKey: "withWhom",
-      as: "withWhomUser",
-    });
-  };
-
-  return Chat;
+  return Group;
 };

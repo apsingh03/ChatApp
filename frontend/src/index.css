@@ -121,7 +121,6 @@ body {
   position: absolute;
   top: 20%;
   z-index: 1;
-
 }
 
 
@@ -157,7 +156,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 60px 0;
 
 }
 
@@ -249,12 +248,12 @@ body {
 
 #rightSide .left .chatBox .header {
   padding: 15px;
-  height: 25vh;
+  height: 10vh;
 }
 
 #rightSide .left .chatBox .recentChatContainer {
   overflow-y: scroll;
-  height: 75vh;
+  height: 38vh;
 
 }
 
@@ -539,6 +538,60 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
+#popupCreateGroup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  padding: 0 100px 0 50px;
+}
+
+#aboutGroup {
+  padding: 5px;
+}
+
+#aboutGroup .header {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+#aboutGroup .body {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+#aboutGroup .body .box {
+  background-color: #ddd;
+  padding: 5px;
+  overflow-y: scroll;
+  height: 70vh;
+
+}
+
+
+#aboutGroup .body .box::-webkit-scrollbar {
+  width: 10px;
+}
+
+#aboutGroup .body .box::-webkit-scrollbar-track {
+  background: #2E2E2E;
+
+}
+
+#aboutGroup .body .box::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+
 
 /* ---------- TOOL TIP -------------- */
 

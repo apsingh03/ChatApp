@@ -6,7 +6,7 @@ import { IoMdChatboxes } from "react-icons/io";
 import { GrContactInfo } from "react-icons/gr";
 import { IoBookmarks } from "react-icons/io5";
 import { IoSunnySharp, IoMoon } from "react-icons/io5";
-
+import { HiMiniUserGroup } from "react-icons/hi2";
 const SideHeader = () => {
   return (
     <div id="leftSide">
@@ -39,6 +39,18 @@ const SideHeader = () => {
         </Link>
       </div>
 
+      <div
+        className="iconContainer"
+        data-tooltip="Group Chat"
+        data-flow="right"
+      >
+        <Link to="/groups">
+          <span className="icon">
+            <HiMiniUserGroup />
+          </span>
+        </Link>
+      </div>
+
       <div className="iconContainer" data-tooltip="Contacts" data-flow="right">
         <Link to="/contacts">
           <span className="icon">
@@ -47,19 +59,9 @@ const SideHeader = () => {
         </Link>
       </div>
 
-      <div className="iconContainer" data-tooltip="Sunny" data-flow="right">
-        <Link to="#">
-          <span className="icon">
-            <IoSunnySharp />
-          </span>
-        </Link>
-      </div>
-
       <div className="iconContainer" data-tooltip="Night" data-flow="right">
         <Link to="#">
-          <span className="icon">
-            <IoMoon />
-          </span>
+          <span className="icon">{true ? <IoMoon /> : <IoSunnySharp />}</span>
         </Link>
       </div>
     </div>

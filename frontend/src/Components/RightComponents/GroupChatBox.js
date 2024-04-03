@@ -6,63 +6,62 @@ import { BsEmojiSmileFill } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { IoSend } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  createChatAsync,
-  getAllChatsAsync,
-  getChatsLengthAsync,
-} from "../../redux/slices/Chatting";
 import IsLoading from "../IsLoading.js";
 import { toast } from "react-toastify";
-const ChatBox = () => {
+import {
+  createGroupChatMessageAsync,
+  getGroupByIdAsync,
+  getGroupByIdChatsLengthAsync,
+} from "../../redux/slices/GroupSlice.js";
+const GroupChatBox = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const chatRedux = useSelector((state) => state.chat);
+
+  const groupIdFromUseLocation = location?.pathname?.split("/")[2];
+  const groupNameFromUseLocation = location?.pathname?.split("/")[3];
+
   const usersRedux = useSelector((state) => state.users);
-
-  const withWhomIdFromUseLocation = location.pathname.split("/")[2];
-  const withWhomUserNameFromUseLocation = location.pathname.split("/")[3];
-  const idsCodeFromUseLocation = location.pathname.split("/")[4];
-
-  // console.log("idsCodeFromUseLocation - ", idsCodeFromUseLocation )
+  const groupRedux = useSelector((state) => state.group);
 
   const [userMessage, setuserMessage] = useState("");
   const [chatWhichPage, setchatWhichPage] = useState();
-  const [itemsPerPage, setitemsPerPage] = useState(10);
-
-  const [allChats, setallChats] = useState([]);
+  const [itemsPerPage, setitemsPerPage] = useState(15);
+  const [allGroupChats, setallGroupChats] = useState([]);
 
   const getChatsLengthRedux = async () => {
+    // let length = chatRedux?.data?.count / 5;
+
     const chatsLengthActionResult = await dispatch(
-      getChatsLengthAsync({ withWhomId: withWhomIdFromUseLocation })
+      getGroupByIdChatsLengthAsync({ groupId: groupIdFromUseLocation })
     );
 
-    if (
-      chatsLengthActionResult.payload.success === true &&
-      chatsLengthActionResult.payload.length > 0
-    ) {
+    // console.log( "chatsLengthActionResult - " , chatsLengthActionResult );
+
+    if (chatsLengthActionResult.payload.success === true) {
       const chatLengthPage = Math.ceil(
         chatsLengthActionResult.payload.length / itemsPerPage
       );
-
-      // console.log(
-      //   "length - ",
-      //   chatsLengthActionResult.payload.length,
-      //   "page - ",
-      //   chatLengthPage
-      // );
+      console.log(
+        "Array Length - ",
+        chatsLengthActionResult.payload.length,
+        "which Page - ",
+        chatLengthPage
+      );
 
       setchatWhichPage(chatLengthPage);
 
-      const actionResultAllChats = await dispatch(
-        getAllChatsAsync({
+      const actionResult = await dispatch(
+        getGroupByIdAsync({
+          groupId: groupIdFromUseLocation,
           page: chatLengthPage,
           itemsPerPage,
-          withWhomId: withWhomIdFromUseLocation,
-          idsCode: idsCodeFromUseLocation,
         })
       );
-      // console.log("ALL chats with whom", actionResultAllChats.payload.rows);
-      setallChats(actionResultAllChats.payload.rows);
+
+      if ((actionResult.type = "group/getGroupById/fulfilled")) {
+        // console.log("data ", actionResult.payload.rows[0]);
+        setallGroupChats(actionResult.payload.rows);
+      }
     }
   };
 
@@ -74,18 +73,20 @@ const ChatBox = () => {
     if (userMessage.length === 0) {
       toast.error("Please Type Your Message");
     } else {
-      // console.log( userMessage );
-
       const actionResult = await dispatch(
-        createChatAsync({
+        createGroupChatMessageAsync({
           message: userMessage,
-          withWhomId: withWhomIdFromUseLocation,
+          groupId: groupIdFromUseLocation,
         })
       );
 
+      // let mapData = actionResult.payload.map( (data) => data );
+      setallGroupChats((prevChats) => [...prevChats, ...actionResult.payload]);
+
+      // setallGroupChats(actionResult.payload)
       setuserMessage(" ");
 
-      // console.log("createChat - ", actionResult.payload);
+      // console.log("create grp  msg - " , actionResult.payload )
     }
   };
 
@@ -93,16 +94,18 @@ const ChatBox = () => {
     const { scrollTop, clientHeight, scrollHeight } = e.target;
 
     if (scrollTop === 0) {
+      // console.log("scrollTop - " , scrollTop  , chatWhichPage , itemsPerPage );
+
       if (chatWhichPage >= 2) {
         const actionResult = await dispatch(
-          getAllChatsAsync({
+          getGroupByIdAsync({
+            groupId: groupIdFromUseLocation,
             page: chatWhichPage - 1,
             itemsPerPage,
-            withWhomId: withWhomIdFromUseLocation,
           })
         );
 
-        setallChats((prevChats) => [
+        setallGroupChats((prevChats) => [
           ...actionResult.payload.rows,
           ...prevChats,
         ]);
@@ -111,6 +114,8 @@ const ChatBox = () => {
       }
     }
   };
+
+  // console.log(" allGroupChats - ", allGroupChats);
 
   let uniqueKey = Math.floor(Math.random() * 10000);
 
@@ -123,7 +128,11 @@ const ChatBox = () => {
           </div>
 
           <div className="px-3">
-            <h5 className="name"> {withWhomUserNameFromUseLocation} </h5>
+            <h5 className="name">
+              {" "}
+              {groupNameFromUseLocation.split("%")[0]}{" "}
+              {groupNameFromUseLocation.split("%")[1].substring(2)}{" "}
+            </h5>
 
             <p className="onlineStatus" style={{ marginTop: "-10px" }}>
               {" "}
@@ -134,7 +143,7 @@ const ChatBox = () => {
 
         <div>
           <IsLoading
-            isLoading={chatRedux?.isLoading && chatRedux?.isLoading}
+            isLoading={groupRedux?.isLoading && groupRedux?.isLoading}
             color={"#000"}
           />
         </div>
@@ -152,18 +161,18 @@ const ChatBox = () => {
       </div>
 
       <div className="chatBody" onScroll={handleScroll}>
-        {allChats &&
-          allChats.map((data, index) => {
+        {allGroupChats &&
+          allGroupChats.map((data, index) => {
             // console.log("map - ", data);
             return (
               <div key={index}>
                 {(function () {
+                  uniqueKey++;
                   if (usersRedux?.loggedUserData?.id === data?.user?.id) {
                     return (
-                      <div className="sendChatRightSide" key={data.id}>
+                      <div className="sendChatRightSide" key={uniqueKey}>
                         <div className="message">
-                          {" "}
-                          {data?.id} {data?.message}
+                          {data?.id} - {data?.message}
                         </div>
 
                         <div className="senderInfo">
@@ -204,10 +213,9 @@ const ChatBox = () => {
                     );
                   } else {
                     return (
-                      <div className="receiveChatLeftSide" key={data.id}>
+                      <div className="receiveChatLeftSide" key={uniqueKey}>
                         <div className="message">
-                          {" "}
-                          {data?.id} {data?.message}
+                          {data?.id} - {data?.message}
                         </div>
 
                         <div className="senderInfo">
@@ -260,7 +268,6 @@ const ChatBox = () => {
           <input
             type="text"
             onChange={(e) => setuserMessage(e.target.value)}
-            value={userMessage}
             className="form-control "
             placeholder="Whats Your Message"
           />
@@ -284,4 +291,4 @@ const ChatBox = () => {
   );
 };
 
-export default ChatBox;
+export default GroupChatBox;
