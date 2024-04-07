@@ -30,7 +30,7 @@ const SignInPage = () => {
 
   return (
     <div id="authentication">
-      <section className="row">
+      <section className="row" style={{ position: "relative" }}>
         <div className="leftSide col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
           <div>
             <h5>
@@ -47,7 +47,7 @@ const SignInPage = () => {
           </div>
 
           <div>
-            <img src={"/images/one.png"} />
+            <img src={"/images/one.png"} alt="lorem ipsum" />
           </div>
         </div>
 
@@ -203,7 +203,7 @@ const SignInPage = () => {
               />
             </div>
 
-            <DevelopedBy color="#000" />
+            <DevelopedBy color="blue" />
           </div>
         </div>
       </section>

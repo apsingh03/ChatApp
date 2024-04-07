@@ -63,7 +63,7 @@ const AboutGroup = () => {
     getGroupDetails();
     getAllGroupMessagesUser();
     dispatch(getAllUsersAsync());
-  }, []);
+  }, [navigate]);
 
   const joinGroupOnClick = async (userId) => {
     setaboutGroupIsLoading(true);

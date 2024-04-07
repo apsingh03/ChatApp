@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 const DevelopedBy = (props) => {
   return (
     <div className="d-flex flex-row justify-content-center mt-3">
-      <p style={{ fontSize: "18px", userSelect: "none" }}>Developed By - </p>
+      <p style={{ fontSize: "18px", userSelect: "none", color: props.color }}>
+        Developed By -{" "}
+      </p>
       <div>
         <Link
           to="https://www.linkedin.com/in/apsingh03/"

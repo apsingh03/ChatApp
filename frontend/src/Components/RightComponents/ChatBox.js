@@ -27,7 +27,7 @@ const ChatBox = () => {
 
   const [userMessage, setuserMessage] = useState("");
   const [chatWhichPage, setchatWhichPage] = useState();
-  const [itemsPerPage, setitemsPerPage] = useState(10);
+  const [itemsPerPage, setitemsPerPage] = useState(20);
 
   const [allChats, setallChats] = useState([]);
 
@@ -119,7 +119,7 @@ const ChatBox = () => {
       <div className="header d-flex flex-row justify-content-between align-items-baseline">
         <div className="d-flex flex-row align-items-baseline ">
           <div>
-            <img src="https://clicklovegrow.com/wp-content/uploads/2021/03/img-5659-1024x731.jpg" />
+            <img src="https://clicklovegrow.com/wp-content/uploads/2021/03/img-5659-1024x731.jpg" alt="loreumipsum" />
           </div>
 
           <div className="px-3">

@@ -73,12 +73,12 @@ db.groupMessage.belongsTo(db.users, {
   foreignKey: "user_id",
 });
 
-db.users.hasMany(db.group , {
-  foreignKey : "admin_id",
-} )
+db.users.hasMany(db.group, {
+  foreignKey: "admin_id",
+});
 
-db.group.belongsTo(db.users , {
-  foreignKey : "admin_id",
-} )
+db.group.belongsTo(db.users, {
+  foreignKey: "admin_id",
+});
 
 module.exports = db;

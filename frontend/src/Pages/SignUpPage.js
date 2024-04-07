@@ -58,7 +58,7 @@ const SignUpPage = () => {
           </div>
 
           <div>
-            <img src={"/images/one.png"} />
+            <img src={"/images/one.png"} alt="cartoon" />
           </div>
         </div>
 

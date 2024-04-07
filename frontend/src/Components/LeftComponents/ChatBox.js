@@ -66,10 +66,7 @@ const ChatBox = () => {
                     <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" />
                     <div className="online"></div>
                   </div>
-                  <p className="px-3 ">
-                    {" "}
-                    {data.user.email}ddd {data.idsCode}{" "}
-                  </p>
+                  <p className="px-3 "> {data.user.email}</p>
                 </Link>
               );
             }

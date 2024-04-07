@@ -285,6 +285,9 @@ const createGroupChatMessage = async (req, res) => {
       },
     ];
 
+    // Emit a socket event to inform clients about the new message
+    io.emit("newMessage", result);
+
     return res.status(200).send(result);
   } catch (error) {
     return res.status(500).send({ error: error.message });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -7,17 +7,16 @@ import { GrContactInfo } from "react-icons/gr";
 import { IoBookmarks } from "react-icons/io5";
 import { IoSunnySharp, IoMoon } from "react-icons/io5";
 import { HiMiniUserGroup } from "react-icons/hi2";
-const SideHeader = () => {
+import Hamburger from "hamburger-react";
+const SideHeader = ({ settoggleHamburger, toggleHamburger }) => {
   return (
     <div id="leftSide">
-      {/* <div className="iconContainer" data-tooltip="Home" data-flow="right">
-        <Link to="/">
-          <span className="icon">
-            <FaHome />
-          </span>
-        </Link>
-        <span></span>
-      </div> */}
+      <div
+        className="hamburgerIcon"
+        onClick={() => settoggleHamburger(!toggleHamburger)}
+      >
+        <Hamburger color="#878a92" size={30} />
+      </div>
 
       <div
         className="iconContainer"

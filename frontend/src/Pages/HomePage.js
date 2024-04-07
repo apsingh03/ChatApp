@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SideHeader from "../Components/SideHeader";
 import LeftSide from "../Components/LeftComponents";
 import RightSide from "../Components/RightComponents";
 
-// icons
-
 const HomePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [toggleHamburger, settoggleHamburger] = useState(false);
+
   const usersRedux = useSelector((state) => state.users);
 
   const redirectIfNotLogged = () => {
@@ -25,10 +26,16 @@ const HomePage = () => {
   return (
     <>
       <div id="bodyContainer">
-        <SideHeader />
+        <SideHeader
+          settoggleHamburger={settoggleHamburger}
+          toggleHamburger={toggleHamburger}
+        />
 
         <section id="rightSide">
-          <LeftSide />
+          <LeftSide
+            toggleHamburger={toggleHamburger}
+            settoggleHamburger={settoggleHamburger}
+          />
 
           <RightSide />
         </section>
