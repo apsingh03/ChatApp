@@ -27,6 +27,43 @@ io.on("connection", (socket) => {
   // socket.emit("welcome", { user: "admin", message: "Welcome to the chat" });
 });
 
+// SWAGGER documentation
+
+const bodyParser = require("body-parser");
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+
+const options = {
+  definition: {
+    openapi: "3.1.0",
+    info: {
+      title: "ChatApp API with Swagger",
+      version: "0.1.0",
+      description: `Its a Chat Application Platform <br/> <br/> 
+      Developed By <b> Ajay Pratap Singh</b>  <br/> <br/> 
+      Github  - <b> <a href="https://github.com/apsingh03" target="_blank" >Click Here</a></b>  <br/> <br/> 
+      LinkedIn - <b> <a href="https://www.linkedin.com/in/apsingh03/" target="_blank" >Click Here</a></b>  <br/> <br/> 
+      Developer Website - <b> <a href="https://ajaypratapsingh.online/" target="_blank" >Click Here</a></b>
+      `,
+
+      contact: {
+        name: "Ajay pratap Singh",
+        // url: "ajaypratapsingh.online",
+        email: "apsinghjobs@gmail.com",
+      },
+    },
+    servers: [
+      {
+        url: process.env.BACKEND_HOSTED_URL,
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
+
+const specs = swaggerJsdoc(options);
+app.use("/", swaggerUi.serve, swaggerUi.setup(specs));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
@@ -34,7 +71,7 @@ const corsOptions = {
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
-app.use(cors());
+app.use(cors(corsOptions));
 
 const userRoutes = require("./routes/usersRoute");
 

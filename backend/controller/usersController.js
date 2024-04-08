@@ -483,7 +483,7 @@ const getAboutGroupById = async (req, res) => {
 
 const getAllGroupsJoinedUser = async (req, res) => {
   try {
-     const groupId = parseInt(req.query.groupId);
+    const groupId = parseInt(req.query.groupId);
     const getAllGroupsJoinedUserQuery = await GroupMessage.findAll({
       attributes: ["user_id"],
       group: "user_id",
@@ -500,7 +500,6 @@ const joinGroupViaUserId = async (req, res) => {
   const t = await sequelize.transaction();
 
   try {
-   
     const userId = req.body.userId;
     const groupId = req.body.groupId;
 
