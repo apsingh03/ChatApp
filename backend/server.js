@@ -27,6 +27,19 @@ io.on("connection", (socket) => {
   // socket.emit("welcome", { user: "admin", message: "Welcome to the chat" });
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+const corsOptions = {
+  origin: process.env.CORS_FRONTEND_ORIGIN,
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+const userRoutes = require("./routes/usersRoute");
+
+app.use("/users", userRoutes);
+
 // SWAGGER documentation
 
 const bodyParser = require("body-parser");
@@ -64,18 +77,6 @@ const options = {
 const specs = swaggerJsdoc(options);
 app.use("/", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-const corsOptions = {
-  origin: process.env.CORS_FRONTEND_ORIGIN,
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
-
-const userRoutes = require("./routes/usersRoute");
-
-app.use("/users", userRoutes);
 // actually we use app.listen() but we are using sockets so we have to use server.listen()
 server.listen(process.env.PORT || 5000, () => {
   console.log(`Listening on PORT ${process.env.PORT} `);
