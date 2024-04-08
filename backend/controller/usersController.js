@@ -483,9 +483,11 @@ const getAboutGroupById = async (req, res) => {
 
 const getAllGroupsJoinedUser = async (req, res) => {
   try {
+     const groupId = parseInt(req.query.groupId);
     const getAllGroupsJoinedUserQuery = await GroupMessage.findAll({
       attributes: ["user_id"],
       group: "user_id",
+      where: { group_id: groupId },
     });
 
     return res.status(200).send(getAllGroupsJoinedUserQuery);
@@ -498,9 +500,7 @@ const joinGroupViaUserId = async (req, res) => {
   const t = await sequelize.transaction();
 
   try {
-    console.log(
-      "---------------------------------------------------- START 1 --------------------- "
-    );
+   
     const userId = req.body.userId;
     const groupId = req.body.groupId;
 
@@ -508,7 +508,7 @@ const joinGroupViaUserId = async (req, res) => {
     // console.log("groupId - " , groupId );
 
     const userAlreadyJoinedOrNotQuery = await GroupMessage.findOne({
-      where: { user_id: userId },
+      where: [{ user_id: userId }, { group_id: groupId }],
     });
 
     if (userAlreadyJoinedOrNotQuery) {

@@ -47,13 +47,15 @@ const AboutGroup = () => {
 
   const getAllGroupMessagesUser = async () => {
     setaboutGroupIsLoading(true);
-    const getAllusersAction = await dispatch(getAllGroupsJoinedUserAsync());
+    const getAllusersAction = await dispatch(
+      getAllGroupsJoinedUserAsync({ groupId  : groupIdFromUseLocation})
+    );
 
     if (
       getAllusersAction.type === "aboutGroup/getAllGroupsJoinedUser/fulfilled"
     ) {
       setgetAllUsersJoinedGroups(getAllusersAction.payload);
-      // console.log("getAllUsersJoinedGroups - ", getAllusersAction.payload);
+      console.log("getAllUsersJoinedGroups - ", getAllusersAction.payload);
 
       setaboutGroupIsLoading(false);
     }

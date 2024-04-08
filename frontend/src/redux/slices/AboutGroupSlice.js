@@ -29,10 +29,10 @@ export const getAboutGroupByIdAsync = createAsyncThunk(
 
 export const getAllGroupsJoinedUserAsync = createAsyncThunk(
   "aboutGroup/getAllGroupsJoinedUser",
-  async () => {
+  async ({ groupId }) => {
     try {
       const response = await axios.get(
-        `${HOSTNAME}/users/getAllGroupsJoinedUser`,
+        `${HOSTNAME}/users/getAllGroupsJoinedUser?groupId=${groupId}`,
         {
           headers: { Authorization: `${authUserObject}` },
         }
