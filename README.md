@@ -14,6 +14,24 @@
 - User can share images in the chats it will store in AWS
 - Responsive Design for Desktop , Tablet , Mobile
 
+## WebApp Screenshots 
+<div style="display: flex; gap: 30px;">
+
+ <img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="SignUp Page" />
+
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Full Screen Dashboard" />
+
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Add Expenses Dashboard" />
+
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Tablet Mode Dashboard" />
+
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Tablet Mode Dashboard" />
+
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Tablet Mode Dashboard" />
+ 
+</div>
+
+
 #### Front End Deployed Link - [Click Here to Check FrontEnd](https://chatapp-frontend-1qht.onrender.com/)
 
 ##### HTML , CSS , Bootstrap , Javascript , React JS , React Router, Redux Toolkit , Redux Thunk , Axios , Socket.io
@@ -41,4 +59,8 @@
 
 ## 🚀 About Me
 
-I'm a well skilled and motivated Mern Stack Developer with expertise in HTML, CSS, Bootstrap, JavaScript, React.js, React Native ,Swagger. I am proficient in crafting responsive web designs. On the backend, I have expertise in NodeJS and ExpressJS for building robust Rest APIs . My knowledge extends to Hybrid mobile app development using React Native, and I can efficiently handle MySQL databases for seamless data management. With a passion for problem-solving and a keen eye for detail I am looking for growth opportunities in my development career
+I'm MERN stack & React Native developer proficient in HTML, CSS, JS, React, Redux
+Toolkit, Node.js, Express.js, MySQL, & Axios. Skilled in crafting web and cross-platform
+mobile applications using React Native with a focus on responsive design, user
+experience, and efficient data management. Passionate about problem-solving and
+pushing boundaries in software development.
