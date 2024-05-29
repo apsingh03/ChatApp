@@ -17,17 +17,17 @@
 ## WebApp Screenshots 
 <div style="display: flex; gap: 30px;">
 
- <img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="SignUp Page" />
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="SignUp Page" height="200" title="SignUp Page" />
 
-<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Full Screen Dashboard" />
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/Chatting Dashboard Page.png" alt="Chatting Dashboard Page" height="200" title="Chatting Dashboard Page" />
 
-<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Add Expenses Dashboard" />
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/Tablet Mode breakpoint.png" alt="Tablet Mode Breakpoint" height="200" title="Tablet Mode Breakpoint" />
 
-<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Tablet Mode Dashboard" />
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/mobile mode breakpoint.png" alt="Mobile Mode Breakpoint" height="200" title="Mobile Mode Breakpoint" />
 
-<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Tablet Mode Dashboard" />
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/userCanSendImages.png" alt="User Can send Images while Chatting" height="200" title="User Can send Images while Chatting" />
 
-<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/SignupPage.png" alt="Screenshot 1" height="300" title="Tablet Mode Dashboard" />
+<img src="https://raw.githubusercontent.com/apsingh03/ChatApp/master/screenshots/WebApp/signup page mobile mode.png" alt="Signup Page Mobile Mode" height="200" title="Signup Page Mobile Mode" />
  
 </div>
 
